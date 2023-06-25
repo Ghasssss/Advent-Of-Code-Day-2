@@ -1,0 +1,30 @@
+def calculate_checksum(box_ids):
+    count_two = 0
+    count_three = 0
+
+    for box_id in box_ids:
+        letter_counts = {}
+        for letter in box_id:
+            if letter in letter_counts:
+                letter_counts[letter] += 1
+            else:
+                letter_counts[letter] = 1
+
+        if 2 in letter_counts.values():
+            count_two += 1
+        if 3 in letter_counts.values():
+            count_three += 1
+
+    checksum = count_two * count_three
+    return checksum
+
+# User input
+n = int(input("Enter the number of box IDs: "))
+box_ids = []
+for i in range(n):
+    box_id = input("Enter box ID {}: ".format(i + 1))
+    box_ids.append(box_id)
+
+# Calculate checksum
+checksum = calculate_checksum(box_ids)
+print("Checksum:", checksum)
